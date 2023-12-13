@@ -4,18 +4,18 @@ import java.util.Scanner;
 
 public class Options {
     public static void showMenu() {
-        // String option;
+        String option;
         while (true) {
             // Mostrar menú
-            Scanner scanner = new Scanner(System.in);
-            String option = scanner.nextLine();
-            System.out.println("----- Menú Principal -----");
+            System.out.println("-------- MEDICAL CONSULTATIONS--------");
+            System.out.println("----- Main Menu -----");
             System.out.println("1. Entrar como doctor");
             System.out.println("2. Entrar como paciente");
             System.out.println("3. Salir");
             System.out.print("Selecciona una opción: ");
 
-
+            Scanner scanner = new Scanner(System.in);
+            option = scanner.nextLine();
             // Realizar acciones según la opción seleccionada
             switch (option) {
                 case "1":
@@ -41,9 +41,7 @@ public class Options {
             }
 
             // Limpiar el buffer del scanner después de leer la opción
-            // scanner.nextLine();
+            scanner.nextLine();
         }
     }
-
-
 }
