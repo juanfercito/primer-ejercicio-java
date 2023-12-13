@@ -1,19 +1,25 @@
 package segundoEjercicio;
+
+import java.util.Scanner;
+
 public class Doctor {
-    static int id;
+    static int idDoctor = 0;
     static String name;
     static String speciality;
 
     // Behaviour
-    Doctor() {
-        Doctor.name = "Juanfer";
-        Doctor.id = 001;
-        Doctor.speciality = "Cardiology";
-        System.out.println("The current doctor is " + Doctor.name);
+    public static void createDoctor() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("generating new Doctor");
+        System.out.println("Write a name: ");
+        Doctor.name = scanner.nextLine();
+        idDoctor++;
+        System.out.println("Write a Speciality: ");
+        Doctor.speciality = scanner.nextLine();
     }
-    public void showName() {
-        System.out.println(name);
-        System.out.println(id);
-        System.out.println(speciality);
+    public static void showDoctorData() {
+        System.out.println("New Doctor is " + name);
+        System.out.println("ID is " + idDoctor);
+        System.out.println("Speciality is " + speciality);
     }
 }
