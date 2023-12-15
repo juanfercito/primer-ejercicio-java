@@ -1,6 +1,6 @@
 package segundoEjercicio;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,12 +10,12 @@ public class Doctor {
     static int idDoctor = 0;
     static String name;
     static String speciality;
-    // private List<String> availableMeetings;
+    private static List<LocalDateTime> availSchedule;
 
     public Doctor(String name, String speciality) {
         this.name = name;
         this.speciality = speciality;
-        // this.availableMeetings = new ArrayList<>();
+        this.availSchedule = Calendar.genDatesToDoctor();
     }
 
     // Behaviour
@@ -32,5 +32,11 @@ public class Doctor {
         System.out.println("New Doctor is " + name);
         System.out.println("ID is " + idDoctor);
         System.out.println("Speciality is " + speciality);
+        System.out.println("");
+    }
+    public static List<LocalDateTime> doctorSchedule() {
+        System.out.println("Available meetings: " + Calendar.genDatesToDoctor());
+        // System.out.println(genDatesToDoctor);
+        return availSchedule;
     }
 }

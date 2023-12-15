@@ -25,6 +25,7 @@ public class Options {
                     // Puedes agregar lógica específica para el doctor aquí
                     Doctor.createDoctor();
                     Doctor.showDoctorData();
+                    Doctor.doctorSchedule();
                     continue;
                 case "2":
                     System.out.println("logging as paciente...");
@@ -34,7 +35,7 @@ public class Options {
                     Patient.showPatient();
                     continue;
                 case "3":
-                    Calendar.getDates();
+                    Calendar.availDate();
                     continue;
                 case "4":
                     System.out.println("Exit. ¡Good Luck!");
