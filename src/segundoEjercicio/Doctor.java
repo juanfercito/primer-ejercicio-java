@@ -1,8 +1,6 @@
 package segundoEjercicio;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,33 +8,54 @@ public class Doctor {
     static int idDoctor = 0;
     static String name;
     static String speciality;
-    private static List<LocalDateTime> availSchedule;
-
+    static List<String> doctorList = new ArrayList<>();
     public Doctor(String name, String speciality) {
         this.name = name;
         this.speciality = speciality;
-        this.availSchedule = Calendar.genDatesToDoctor();
+        // this.availSchedule = Calendar.genDatesToDoctor();
+    }
+    String getName() {
+        return name;
+    }
+    String getSpeciality() {
+        return speciality;
+    }
+    @Override
+    public String toString() {
+        return "Doctor: " + name + ", specialist in " + speciality;
+    }
+    public static void dataDoctor() {
+        Scanner scanner = new Scanner(System.in);
+        for (Doctor nuevoDoctor = createDoctor(scanner);
+             !nuevoDoctor.getName().equalsIgnoreCase("exit");
+             nuevoDoctor = createDoctor(scanner)) {
+
+            // Agregar los datos del doctor a la lista
+            doctorList.add(String.valueOf(nuevoDoctor));
+
+            // Mostrar solo los datos del doctor ingresado
+            System.out.println("Doctor ingresado: " + nuevoDoctor);
+        }
+
+        // Mostrar la lista completa de doctores al final del programa
+        System.out.println("Lista de doctores ingresados al final del programa:");
+        for (String doctor : doctorList) {
+            System.out.println(doctor);
+        }
     }
 
-    // Behaviour
-    public static void createDoctor() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("generating new Doctor");
-        System.out.println("Write a name: ");
-        Doctor.name = scanner.nextLine();
-        idDoctor++;
-        System.out.println("Write a Speciality: ");
-        Doctor.speciality = scanner.nextLine();
-    }
-    public static void showDoctorData() {
-        System.out.println("New Doctor is " + name);
-        System.out.println("ID is " + idDoctor);
-        System.out.println("Speciality is " + speciality);
-        System.out.println("");
-    }
-    public static List<LocalDateTime> doctorSchedule() {
-        System.out.println("Available meetings: " + Calendar.genDatesToDoctor());
-        // System.out.println(genDatesToDoctor);
-        return availSchedule;
+    private static Doctor createDoctor(Scanner scanner) {
+        System.out.print("Write the name of Doctor (or write 'exit' to end): ");
+        String name = scanner.nextLine();
+
+        if (name.equalsIgnoreCase("exit")) {
+            // Si el usuario decide terminar, retornamos un objeto especial
+            return new Doctor("exit", "exit");
+        }
+
+        System.out.print("Write the speciality: ");
+        String speciality = scanner.nextLine();
+
+        return new Doctor(name, speciality);
     }
 }

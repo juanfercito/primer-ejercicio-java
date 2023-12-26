@@ -1,11 +1,13 @@
 package segundoEjercicio;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Options {
     public static void showMenu() {
         String option;
+        List<Doctor> doctors = new ArrayList<>();
         while (true) {
             // Mostrar menú
             System.out.println("-------- MEDICAL APPOINTMENTS --------");
@@ -23,16 +25,13 @@ public class Options {
                 case "1":
                     System.out.println("logging as doctor...");
                     // Puedes agregar lógica específica para el doctor aquí
-                    Doctor.createDoctor();
-                    Doctor.showDoctorData();
-                    Doctor.doctorSchedule();
+                    Doctor.dataDoctor();
                     continue;
                 case "2":
                     System.out.println("logging as paciente...");
                     // Puedes agregar lógica específica para el paciente aquí
                     Patient.inputPatient();
-                    // Patient.makeAppointment();
-                    Patient.showPatient();
+                    // Patient.showDoctors();
                     continue;
                 case "3":
                     Calendar.availDate();
