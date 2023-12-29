@@ -12,8 +12,8 @@ public class Doctor {
     public Doctor(String name, String speciality) {
         this.name = name;
         this.speciality = speciality;
-        // this.availSchedule = Calendar.genDatesToDoctor();
     }
+
     String getName() {
         return name;
     }
@@ -36,7 +36,8 @@ public class Doctor {
             // Mostrar solo los datos del doctor ingresado
             System.out.println("Doctor ingresado: " + nuevoDoctor);
         }
-
+    }
+    public static void showDoctorList() {
         // Mostrar la lista completa de doctores al final del programa
         System.out.println("Lista de doctores ingresados al final del programa:");
         for (String doctor : doctorList) {
