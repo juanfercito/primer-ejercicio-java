@@ -8,17 +8,18 @@ public class Options {
     public static void showMenu() {
         String option;
         // List<Doctor> doctors = new ArrayList<>();
+        Scanner scanner;
         while (true) {
             // Mostrar menú
             System.out.println("-------- MEDICAL APPOINTMENTS --------");
             System.out.println("        ----- Main Menu -----");
-            System.out.println("1. Enter a Doctor");
-            System.out.println("2. Enter a Patient");
+            System.out.println("1. Enter as Doctor");
+            System.out.println("2. Enter as Patient");
             System.out.println("3. Search for Appointment");
             System.out.println("4. Exit");
             System.out.print("Select an option: ");
 
-            Scanner scanner = new Scanner(System.in);
+            scanner = new Scanner(System.in);
             option = scanner.nextLine();
             // Realizar acciones según la opción seleccionada
             switch (option) {
@@ -27,6 +28,7 @@ public class Options {
                     System.out.println("logging as doctor...");
                     // Puedes agregar lógica específica para el doctor aquí
                     Doctor.dataDoctor();
+                    System.out.println("       ------------- ");
                     Doctor.showDoctorList();
                     continue;
                 case "2":
@@ -36,25 +38,25 @@ public class Options {
                         // Puedes agregar lógica específica para el paciente aquí
                         System.out.println("   ---- Patient Menu -----");
                         System.out.println(" 1. Input a new patient");
-                        System.out.println(" 2. Schedule with a Doctor");
+                        System.out.println(" 2. Watch All Patients");
                         System.out.println(" 3. Exit");
                         System.out.println("  Choose an option to continue: ");
 
-                        // Scanner optionP = new Scanner(System.in);
                         int patientOption = scanner.nextInt();
                         if (patientOption == 1) {
                             Patient.dataPatient();
                         } else if (patientOption == 2) {
+                            Patient.showPatientList();
                             Patient.getDoctorList();
                         } else if (patientOption == 3) {
                             System.out.println("       ------------- ");
                             break;
                         }
-                        scanner.nextLine();
                     }
+                    scanner.nextLine();
                     continue;
                 case "3":
-                    Calendar.availDate();
+                    Calendar.findBySpeciality();
                     continue;
                 case "4":
                     System.out.println("Exit. ¡Good Luck!");

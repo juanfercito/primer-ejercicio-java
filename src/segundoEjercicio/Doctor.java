@@ -9,11 +9,11 @@ public class Doctor {
     static String name;
     static String speciality;
     static List<String> doctorList = new ArrayList<>();
+    private static List<Doctor> doctors = new ArrayList<>();
     public Doctor(String name, String speciality) {
         this.name = name;
         this.speciality = speciality;
     }
-
     String getName() {
         return name;
     }
@@ -22,35 +22,39 @@ public class Doctor {
     }
     @Override
     public String toString() {
-        return "Doctor: " + name + ", specialist in " + speciality;
+        return " - Doctor: " + name + ", specialist in " + speciality;
     }
+
+    // Add the data of the doctor to List
     public static void dataDoctor() {
         Scanner scanner = new Scanner(System.in);
-        for (Doctor nuevoDoctor = createDoctor(scanner);
-             !nuevoDoctor.getName().equalsIgnoreCase("exit");
-             nuevoDoctor = createDoctor(scanner)) {
+        for (Doctor newDoctor = createDoctor(scanner);
+             !newDoctor.getName().equalsIgnoreCase("exit");
+             newDoctor = createDoctor(scanner)) {
 
-            // Agregar los datos del doctor a la lista
-            doctorList.add(String.valueOf(nuevoDoctor));
+            doctorList.add(String.valueOf(newDoctor));
 
-            // Mostrar solo los datos del doctor ingresado
-            System.out.println("Doctor ingresado: " + nuevoDoctor);
+            // Show the data of the new doctor added
+            System.out.println("New Doctor Generated: " + newDoctor);
+            System.out.println("       ------------- ");
         }
     }
-    public static void showDoctorList() {
-        // Mostrar la lista completa de doctores al final del programa
-        System.out.println("Lista de doctores ingresados al final del programa:");
+    // Show the current list of the doctors
+    public static List<String> showDoctorList() {
+        // System.out.println("Lista de doctores ingresados al final del programa:");
         for (String doctor : doctorList) {
             System.out.println(doctor);
         }
+        System.out.println("       ------------- ");
+        return doctorList;
     }
-
+    // Input the new doctor
     private static Doctor createDoctor(Scanner scanner) {
         System.out.print("Write the name of Doctor (or write 'exit' to end): ");
         String name = scanner.nextLine();
 
+        // If the user decides to exit, return an special object
         if (name.equalsIgnoreCase("exit")) {
-            // Si el usuario decide terminar, retornamos un objeto especial
             return new Doctor("exit", "exit");
         }
 
@@ -59,4 +63,14 @@ public class Doctor {
 
         return new Doctor(name, speciality);
     }
+    public static List<String> getDoctorList() {
+        for (Doctor doctor :doctors) {
+            doctorList.add(doctor.getName() + " " + doctor.getSpeciality());
+        }
+        return doctorList;
+    }
+
+     /* private static List<Doctor> genDoctorList() {
+        return getDoctorList();
+    }*/
 }

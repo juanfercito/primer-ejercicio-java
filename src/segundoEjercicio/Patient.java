@@ -13,6 +13,7 @@ public class Patient {
         this.name = name;
         this.disease = disease;
     }
+
     String getName() {
         return name;
     }
@@ -23,7 +24,8 @@ public class Patient {
     public String toString() {
         return "Patient: " + name + ", sick of " + disease;
     }
-    // entry new patient
+
+    // Add new patient to List of patients
     public static void dataPatient() {
         Scanner scanner = new Scanner(System.in);
         for (Patient newPatient = createPatient(scanner);
@@ -36,13 +38,16 @@ public class Patient {
             // Show the data of the new patient
             System.out.println("Patient added: " + newPatient);
         }
-
-        // Show the list of patients at the end of the program
+    }
+    // Show the list of patients at the end of the program
+    public static List<String> showPatientList() {
         System.out.println("Total of patients: " + patients.size());
         for (String patient : patients) {
             System.out.println(patient);
         }
+        return patients;
     }
+    // Input a new patient
     static Patient createPatient(Scanner scanner) {
         System.out.println("Write a name or exit to continue: ");
         String name = scanner.nextLine();
