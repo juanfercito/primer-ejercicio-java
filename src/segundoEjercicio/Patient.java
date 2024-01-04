@@ -8,7 +8,7 @@ public class Patient {
     static int idPatient;
     static String name;
     static String disease;
-    static List<String> patients = new ArrayList<>();
+    static List<String> patientList = new ArrayList<>();
     public Patient(String name, String disease) {
         this.name = name;
         this.disease = disease;
@@ -33,7 +33,7 @@ public class Patient {
              newPatient = createPatient(scanner)) {
 
             // Add the new patient to the list
-            patients.add(String.valueOf(newPatient));
+            patientList.add(String.valueOf(newPatient));
 
             // Show the data of the new patient
             System.out.println("Patient added: " + newPatient);
@@ -41,11 +41,11 @@ public class Patient {
     }
     // Show the list of patients at the end of the program
     public static List<String> showPatientList() {
-        System.out.println("Total of patients: " + patients.size());
-        for (String patient : patients) {
+        System.out.println("Total of patients: " + patientList.size());
+        for (String patient : patientList) {
             System.out.println(patient);
         }
-        return patients;
+        return patientList;
     }
     // Input a new patient
     static Patient createPatient(Scanner scanner) {
@@ -59,10 +59,12 @@ public class Patient {
         String disease = scanner.nextLine();
         return new Patient(name, disease);
     }
-    public static void getDoctorList() {
-        System.out.println("List of Doctors: ");
-        Doctor.showDoctorList();
-        System.out.println("       ------------- ");
+    public static List<String> getPatientList() {
+        List<Patient> patients = new ArrayList<>();
+        for (Patient patient :patients) {
+            patientList.add(patient.getName() + " " + patient.getDisease());
+        }
+        return patientList;
     }
 }
 

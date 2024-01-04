@@ -9,7 +9,6 @@ public class Doctor {
     static String name;
     static String speciality;
     static List<String> doctorList = new ArrayList<>();
-    private static List<Doctor> doctors = new ArrayList<>();
     public Doctor(String name, String speciality) {
         this.name = name;
         this.speciality = speciality;
@@ -41,7 +40,6 @@ public class Doctor {
     }
     // Show the current list of the doctors
     public static List<String> showDoctorList() {
-        // System.out.println("Lista de doctores ingresados al final del programa:");
         for (String doctor : doctorList) {
             System.out.println(doctor);
         }
@@ -53,7 +51,7 @@ public class Doctor {
         System.out.print("Write the name of Doctor (or write 'exit' to end): ");
         String name = scanner.nextLine();
 
-        // If the user decides to exit, return an special object
+        // If the user decides to exit, return an especial object
         if (name.equalsIgnoreCase("exit")) {
             return new Doctor("exit", "exit");
         }
@@ -63,14 +61,12 @@ public class Doctor {
 
         return new Doctor(name, speciality);
     }
+    // extract the doctorList to use in other methods
     public static List<String> getDoctorList() {
+        List<Doctor> doctors = new ArrayList<>();
         for (Doctor doctor :doctors) {
             doctorList.add(doctor.getName() + " " + doctor.getSpeciality());
         }
         return doctorList;
     }
-
-     /* private static List<Doctor> genDoctorList() {
-        return getDoctorList();
-    }*/
 }
