@@ -81,7 +81,7 @@ public class Options {
                         System.out.println("  Choose an option to continue: ");
                         int calendarOption = scanner.nextInt();
                         if (calendarOption == 1) {
-                            System.out.println("pass");
+                            Appointment.showAppointments();
                         } else if (calendarOption == 2) {
                             System.out.println("Not Available View");
                         } else if (calendarOption == 3) {
