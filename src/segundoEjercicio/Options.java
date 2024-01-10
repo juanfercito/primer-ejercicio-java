@@ -1,7 +1,5 @@
 package segundoEjercicio;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Options {
@@ -27,46 +25,13 @@ public class Options {
                     // Execute the logic for Doctor here
                     System.out.println("       ------------- ");
                     System.out.println("logging as doctor...");
-                    while (true) {
-                        System.out.println("   ---- Doctor Menu -----");
-                        System.out.println(" 1. Input a new Doctor");
-                        System.out.println(" 2. Watch All the Doctors");
-                        System.out.println(" 3. Return to Main Menu");
-                        System.out.println("  Choose an option to continue: ");
-                        int doctorOption = scanner.nextInt();
-                        if (doctorOption == 1) {
-                            Doctor.dataDoctor();
-                        } else if (doctorOption == 2) {
-                            Doctor.showDoctorList();
-                        } else if (doctorOption == 3) {
-                            System.out.println("       ------------- ");
-                            break;
-                        }
-                    }
-                    scanner.nextLine();
+                    DoctorOptions.doctorMenu();
                     continue;
                 case "2":
                     // Execute the logic for the Patient here
                     System.out.println("       ------------- ");
                     System.out.println("logging as patient...");
-                    while (true) {
-                        System.out.println("   ---- Patient Menu -----");
-                        System.out.println(" 1. Input a new patient");
-                        System.out.println(" 2. Watch All Patients");
-                        System.out.println(" 3. Return to Main Menu");
-                        System.out.println("  Choose an option to continue: ");
-
-                        int patientOption = scanner.nextInt();
-                        if (patientOption == 1) {
-                            Patient.dataPatient();
-                        } else if (patientOption == 2) {
-                            Patient.showPatientList();
-                        } else if (patientOption == 3) {
-                            System.out.println("       ------------- ");
-                            break;
-                        }
-                    }
-                    scanner.nextLine();
+                    PatientOptions.PatientMenu();
                     continue;
                 case "3":
                     // Execute the logic for Calendar and Schedule here
@@ -81,13 +46,15 @@ public class Options {
                         System.out.println("  Choose an option to continue: ");
                         int calendarOption = scanner.nextInt();
                         if (calendarOption == 1) {
-                            Appointment.showAppointments();
+                            System.out.println("pass");
                         } else if (calendarOption == 2) {
-                            System.out.println("Not Available View");
+                            System.out.println("pass");
                         } else if (calendarOption == 3) {
-                            Calendar.findBySpeciality();
+                            Doctor.findByName();
+                            Doctor.findBySpeciality();
                         } else if (calendarOption == 4) {
-                            Calendar.findByDisease();
+                            Patient.findByName();
+                            Patient.findByDisease();
                         } else if (calendarOption == 5) {
                             System.out.println("       ------------- ");
                             break;

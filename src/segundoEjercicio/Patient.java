@@ -5,66 +5,93 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Patient {
-    static int idPatient;
-    static String name;
-    static String disease;
-    static List<String> patientList = new ArrayList<>();
+    private String name;
+    private String disease;
+    private static List<Patient> patients = new ArrayList<>();
+
+    // Constructor parameters for Patient and its Getters & Setters
     public Patient(String name, String disease) {
         this.name = name;
         this.disease = disease;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
-    String getDisease() {
+
+    public String getDisease() {
         return disease;
     }
-    @Override
-    public String toString() {
-        return "Patient: " + name + ", sick of " + disease;
+    public static void addPatient(Patient patient) {
+        patients.add(patient);
+    }
+    public static List<Patient> getPatients() {
+        return patients;
+    }
+    public static void showPatientList() {
+        for (Patient patient : patients) {
+            System.out.println(" - Patient: " + patient.getName() + ", sick of " + patient.getDisease());
+        }
     }
 
-    // Add new patient to List of patients
-    public static void dataPatient() {
+    // Methods for finding patients
+    private static Patient findPatientByName(String name) {
+        for (Patient patient : patients) {
+            if (patient.getName().equalsIgnoreCase(name)) {
+                return patient;
+            }
+        }
+        return null;
+    }
+    public static void findByName() {
         Scanner scanner = new Scanner(System.in);
-        for (Patient newPatient = createPatient(scanner);
-             !newPatient.getName().equalsIgnoreCase("exit");
-             newPatient = createPatient(scanner)) {
-
-            // Add the new patient to the list
-            patientList.add(String.valueOf(newPatient));
-
-            // Show the data of the new patient
-            System.out.println("Patient added: " + newPatient);
+        System.out.println("Enter patient name to search:");
+        String searchName = scanner.nextLine();
+        Patient foundPatient = findPatientByName(searchName);
+        if (foundPatient != null) {
+            System.out.println("Patient found: " + foundPatient.getName() + ", diagnosis for " + foundPatient.getDisease());
+        } else {
+            System.out.println("Doctor not found.");
         }
     }
-    // Show the list of patients at the end of the program
-    public static List<String> showPatientList() {
-        System.out.println("Total of patients: " + patientList.size());
-        for (String patient : patientList) {
-            System.out.println(patient);
+    private static List<Patient> findPatientsByDisease(String disease) {
+        List<Patient> foundPatients = new ArrayList<>();
+        for (Patient patient : patients) {
+            if (patient.getDisease().equalsIgnoreCase(disease)) {
+                foundPatients.add(patient);
+            }
         }
-        return patientList;
+        return foundPatients;
     }
-    // Input a new patient
-    static Patient createPatient(Scanner scanner) {
-        System.out.println("Write a name or exit to continue: ");
+    public static void findByDisease() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter diagnosis to search:");
+        String searchDisease = scanner.nextLine();
+        List<Patient> foundPatientsByDisease = findPatientsByDisease(searchDisease);
+        if (!foundPatientsByDisease.isEmpty()) {
+            System.out.println("Patients found by disease, " + foundPatientsByDisease.size());
+            for (Patient patient : foundPatientsByDisease) {
+                System.out.println(" -  " + patient.getName());
+            }
+        } else {
+            System.out.println("No Patients found for the given diagnosis.");
+        }
+        System.out.println("    ............ ");
+    }
+    public static void createPatient() {
+        Patient newPatient = inputNewPatient();
+        addPatient(newPatient);
+        System.out.println(" New Patient added: " + newPatient.getName() + ", sick of " + newPatient.getDisease());
+    }
+    private static Patient inputNewPatient() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(" Enter Patient name: ");
         String name = scanner.nextLine();
-        if (name.equalsIgnoreCase("exit")) {
-            // If the user choose to exit, return an special exit code
-            return new Patient("exit", "exit");
-        }
-        System.out.println("Write a disease:");
+        System.out.println(" Enter Patient ailment: ");
         String disease = scanner.nextLine();
+
         return new Patient(name, disease);
-    }
-    public static List<String> getPatientList() {
-        List<Patient> patients = new ArrayList<>();
-        for (Patient patient :patients) {
-            patientList.add(patient.getName() + " " + patient.getDisease());
-        }
-        return patientList;
     }
 }
 
