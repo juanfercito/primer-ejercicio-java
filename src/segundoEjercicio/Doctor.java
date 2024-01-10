@@ -80,6 +80,7 @@ public class Doctor {
         System.out.println("    ............ ");
     }
 
+    // Using the logic for creating a new Doctor
     public static void createDoctor() {
         Doctor newDoctor = inputNewDoctor();
         addDoctor(newDoctor);

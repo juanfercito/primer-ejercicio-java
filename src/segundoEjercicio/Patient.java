@@ -51,7 +51,7 @@ public class Patient {
         if (foundPatient != null) {
             System.out.println("Patient found: " + foundPatient.getName() + ", diagnosis for " + foundPatient.getDisease());
         } else {
-            System.out.println("Doctor not found.");
+            System.out.println("Patient not found.");
         }
     }
     private static List<Patient> findPatientsByDisease(String disease) {
@@ -79,6 +79,8 @@ public class Patient {
         }
         System.out.println("    ............ ");
     }
+
+    // Using the logic for creating a new Patient
     public static void createPatient() {
         Patient newPatient = inputNewPatient();
         addPatient(newPatient);
@@ -88,7 +90,7 @@ public class Patient {
         Scanner scanner = new Scanner(System.in);
         System.out.println(" Enter Patient name: ");
         String name = scanner.nextLine();
-        System.out.println(" Enter Patient ailment: ");
+        System.out.println(" Enter Patient disease: ");
         String disease = scanner.nextLine();
 
         return new Patient(name, disease);
