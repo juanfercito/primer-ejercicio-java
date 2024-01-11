@@ -8,20 +8,20 @@ public class Patient {
     private String name;
     private String disease;
     private static List<Patient> patients = new ArrayList<>();
+    private List<Appointment> appointments;
 
     // Constructor parameters for Patient and its Getters & Setters
     public Patient(String name, String disease) {
         this.name = name;
         this.disease = disease;
+        this.appointments = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name;}
 
-    public String getDisease() {
-        return disease;
-    }
+    public void setDisease(String disease) {this.disease = disease;}
+
+    public String getDisease() {return disease;}
     public static void addPatient(Patient patient) {
         patients.add(patient);
     }
@@ -94,6 +94,25 @@ public class Patient {
         String disease = scanner.nextLine();
 
         return new Patient(name, disease);
+    }
+
+    // Logic for creating, scheduling and watching appointments
+    public void addAppointments(Appointment appointment) {
+        appointments.add(appointment);
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+    public void showAppointments() {
+        System.out.println("Appointments for Patient " + name + ":");
+        if (appointments.isEmpty()) {
+            System.out.println("No appointments scheduled.");
+        } else {
+            for (Appointment appointment : appointments) {
+                System.out.println(appointment);
+            }
+        }
     }
 }
 

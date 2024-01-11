@@ -2,33 +2,41 @@ package segundoEjercicio;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.*;
 
 public class Appointment {
     private Doctor doctor;
     private Patient patient;
-    private String date;
-    private String time;
-    public Appointment() {
+    private LocalDate date;
+    private LocalTime time;
+    private static List<Doctor> doctors = new ArrayList<>();
+    private static List<Patient> patients = new ArrayList<>();
 
-    }
-    public Appointment(String date, String time) {
+    // Constructor parameters and its Getters & Setters
+    public Appointment(Doctor doctor, Patient patient, LocalDate date, LocalTime time) {
+        this.doctor = doctor;
+        this.patient = patient;
         this.date = date;
         this.time = time;
+        allAppointments.add(this);
     }
 
-    public Appointment(Doctor doctor, Patient patient, LocalDate date, LocalTime time) {
+    public static void setDoctors(List<Doctor> doctors) {
+        Appointment.doctors = doctors;
     }
-
-    public void setDate(String date) {
+    public static void setPatient(List<Patient> patients) {
+        Appointment.patients = patients;
+    }
+    public void setDate(LocalDate date) {
         this.date = date;
     }
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
-    public void setTime(String time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
-    public String getTime() {
+    public LocalTime getTime() {
         return time;
     }
     public void setDoctor(Doctor doctor) {
@@ -46,7 +54,19 @@ public class Appointment {
     }
     @Override
     public String toString() {
-        return "Patient: " + patient.getName() + " Schedule with the Doctor " + doctor.getName() + " for " + date + " at " + time;
+        return " - Patient: " + patient.getName() + " Schedule with the Doctor " + doctor.getName() + " for " + date + " at " + time;
     }
 
+    private static Set<Appointment> allAppointments = new HashSet<>();
+    public static void showAllAppointments() {
+        System.out.println("All Appointments:");
+
+        if (allAppointments.isEmpty()) {
+            System.out.println("No appointments scheduled.");
+        } else {
+            for (Appointment appointment : allAppointments) {
+                System.out.println(appointment);
+            }
+        }
+    }
 }

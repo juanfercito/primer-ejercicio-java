@@ -8,11 +8,13 @@ public class Doctor {
     private String name;
     private String speciality;
     private static List<Doctor> doctors = new ArrayList<>();
+    private List<Appointment> appointments;
 
     // Constructor for Doctor class and its getters & setters
     public Doctor(String name, String speciality) {
         this.name = name;
         this.speciality = speciality;
+        this.appointments = new ArrayList<>();
     }
     public String getName() {
         return name;
@@ -94,5 +96,30 @@ public class Doctor {
         String speciality = scanner.nextLine();
 
         return new Doctor(name, speciality);
+    }
+
+    // Logic for creating, scheduling and watching appointments
+
+    public void addAppointments(Appointment appointment) {
+        appointments.add(appointment);
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void doctorAppointments() {
+        System.out.println(" Appointments for Doctor " + name + ":");
+        if (appointments.isEmpty()) {
+            System.out.println(" No appointments yet.");
+        } else {
+            for (Appointment appointment : appointments) {
+                System.out.println(appointment);
+            }
+        }
+    }
+    public static void showAppointments() {
+        Doctor doctor = doctors.get(0);
+        doctor.doctorAppointments();
     }
 }
